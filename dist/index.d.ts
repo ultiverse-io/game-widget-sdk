@@ -21,3 +21,13 @@ export declare const init: () => void;
 export declare const login: () => void;
 export declare const logout: () => void;
 export declare const listenUser: (callback?: (info: UserInfo | null) => void) => void;
+export declare const topup: (gameOrderId: number, amount: number) => void;
+export declare const withdrawal: (gameOrderId: number, amount: number) => void;
+export declare const listenTopup: (callback?: (data: {
+    gameOrderId: number;
+    status: 'pending' | 'success' | 'failed';
+}) => void) => void;
+export declare const listenWithdrawal: (callback?: (data: {
+    gameOrderId: number;
+    status: 'pending' | 'success' | 'failed';
+}) => void) => void;

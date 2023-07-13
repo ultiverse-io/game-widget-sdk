@@ -46,3 +46,33 @@ export const listenUser = (callback?: (info: UserInfo | null) => void) => {
     callback && callback(data.user_info);
   });
 }
+
+export const topup = (gameOrderId: number, amount: number) => {
+  if (!amount) return;
+
+  bellhop.send('topup', {
+    amount,
+    gameOrderId
+  });
+}
+
+export const withdrawal = (gameOrderId: number, amount: number) => {
+  if (!amount) return;
+
+  bellhop.send('withdrawal', {
+    amount,
+    gameOrderId
+  });
+}
+
+export const listenTopup = (callback?: (data: { gameOrderId: number, status: 'pending' | 'success' | 'failed' }) => void) => {
+  bellhop.on('topup_status', ({ data }) => {
+    callback && callback(data);
+  });
+}
+
+export const listenWithdrawal = (callback?: (data: { gameOrderId: number, status: 'pending' | 'success' | 'failed' }) => void) => {
+  bellhop.on('withdrawal_status', ({ data }) => {
+    callback && callback(data);
+  });
+}
