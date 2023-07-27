@@ -20,6 +20,13 @@ export interface UserInfo {
   }
 }
 
+export interface RankItem {
+  rank: number;
+  username: string;
+  score: number;
+  avatar: string;
+}
+
 const bellhop = new Bellhop();
 
 export const init = () => {
@@ -62,6 +69,13 @@ export const withdrawal = (gameOrderId: number, amount: number) => {
   bellhop.send('withdrawal', {
     amount,
     gameOrderId
+  });
+}
+
+export const updateRank = (show: boolean, list: RankItem[]) => {
+  bellhop.send('update_rank', {
+    show,
+    list
   });
 }
 

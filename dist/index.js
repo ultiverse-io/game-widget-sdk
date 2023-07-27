@@ -1,9 +1,9 @@
-function L(o) {
-  return L = typeof Symbol == "function" && typeof Symbol.iterator == "symbol" ? function(i) {
+function O(o) {
+  return O = typeof Symbol == "function" && typeof Symbol.iterator == "symbol" ? function(i) {
     return typeof i;
   } : function(i) {
     return i && typeof Symbol == "function" && i.constructor === Symbol && i !== Symbol.prototype ? "symbol" : typeof i;
-  }, L(o);
+  }, O(o);
 }
 function U(o, i) {
   if (!(o instanceof i))
@@ -11,18 +11,18 @@ function U(o, i) {
 }
 function V(o) {
   var i = function(a, n) {
-    if (L(a) !== "object" || a === null)
+    if (O(a) !== "object" || a === null)
       return a;
     var c = a[Symbol.toPrimitive];
     if (c !== void 0) {
       var f = c.call(a, n || "default");
-      if (L(f) !== "object")
+      if (O(f) !== "object")
         return f;
       throw new TypeError("@@toPrimitive must return a primitive value.");
     }
     return (n === "string" ? String : Number)(a);
   }(o, "string");
-  return L(i) === "symbol" ? i : String(i);
+  return O(i) === "symbol" ? i : String(i);
 }
 function Y(o, i) {
   for (var a = 0; a < i.length; a++) {
@@ -51,7 +51,7 @@ var X = function() {
         delete this._listeners[i];
   } }, { key: "trigger", value: function(i) {
     var a = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
-    if (typeof i == "string" && (i = { type: i, data: L(a) === "object" && a !== null ? a : {} }), this._listeners[i.type] !== void 0)
+    if (typeof i == "string" && (i = { type: i, data: O(a) === "object" && a !== null ? a : {} }), this._listeners[i.type] !== void 0)
       for (var n = this._listeners[i.type].length - 1; n >= 0; n--)
         this._listeners[i.type][n](i);
   } }, { key: "destroy", value: function() {
@@ -76,7 +76,7 @@ function F() {
       return t[r] = u;
     };
   }
-  function _(e, t, r, u) {
+  function L(e, t, r, u) {
     var s = t && t.prototype instanceof h ? t : h, l = Object.create(s.prototype), d = new M(u || []);
     return n(l, "_invoke", { value: K(e, r, d) }), l;
   }
@@ -87,7 +87,7 @@ function F() {
       return { type: "throw", arg: u };
     }
   }
-  o.wrap = _;
+  o.wrap = L;
   var v = {};
   function h() {
   }
@@ -113,13 +113,13 @@ function F() {
     function r(s, l, d, m) {
       var w = x(e[s], e, l);
       if (w.type !== "throw") {
-        var N = w.arg, T = N.value;
-        return T && L(T) == "object" && a.call(T, "__await") ? t.resolve(T.__await).then(function(P) {
+        var R = w.arg, T = R.value;
+        return T && O(T) == "object" && a.call(T, "__await") ? t.resolve(T.__await).then(function(P) {
           r("next", P, d, m);
         }, function(P) {
           r("throw", P, d, m);
         }) : t.resolve(T).then(function(P) {
-          N.value = P, d(N);
+          R.value = P, d(R);
         }, function(P) {
           return r("throw", P, d, m);
         });
@@ -229,7 +229,7 @@ function F() {
     return this;
   }), o.AsyncIterator = G, o.async = function(e, t, r, u, s) {
     s === void 0 && (s = Promise);
-    var l = new G(_(e, t, r, u), s);
+    var l = new G(L(e, t, r, u), s);
     return o.isGeneratorFunction(t) ? l : l.next().then(function(d) {
       return d.done ? d.value : l.next();
     });
@@ -263,8 +263,8 @@ function F() {
     if (this.done)
       throw e;
     var t = this;
-    function r(w, N) {
-      return l.type = "throw", l.arg = e, t.next = w, N && (t.method = "next", t.arg = void 0), !!N;
+    function r(w, R) {
+      return l.type = "throw", l.arg = e, t.next = w, R && (t.method = "next", t.arg = void 0), !!R;
     }
     for (var u = this.tryEntries.length - 1; u >= 0; --u) {
       var s = this.tryEntries[u], l = s.completion;
@@ -329,8 +329,8 @@ function F() {
 function $(o, i, a, n, c, f, p) {
   try {
     var y = o[f](p), g = y.value;
-  } catch (_) {
-    return void a(_);
+  } catch (L) {
+    return void a(L);
   }
   y.done ? i(g) : Promise.resolve(g).then(n, c);
 }
@@ -339,15 +339,15 @@ function z(o) {
     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
   return o;
 }
-function R(o) {
-  return R = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function(i) {
+function N(o) {
+  return N = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function(i) {
     return i.__proto__ || Object.getPrototypeOf(i);
-  }, R(o);
+  }, N(o);
 }
 function B() {
   return B = typeof Reflect < "u" && Reflect.get ? Reflect.get.bind() : function(o, i, a) {
     var n = function(f, p) {
-      for (; !Object.prototype.hasOwnProperty.call(f, p) && (f = R(f)) !== null; )
+      for (; !Object.prototype.hasOwnProperty.call(f, p) && (f = N(f)) !== null; )
         ;
       return f;
     }(o, i);
@@ -376,14 +376,14 @@ function Z(o) {
     }
   }();
   return function() {
-    var a, n = R(o);
+    var a, n = N(o);
     if (i) {
-      var c = R(this).constructor;
+      var c = N(this).constructor;
       a = Reflect.construct(n, arguments, c);
     } else
       a = n.apply(this, arguments);
     return function(f, p) {
-      if (p && (L(p) === "object" || typeof p == "function"))
+      if (p && (O(p) === "object" || typeof p == "function"))
         return p;
       if (p !== void 0)
         throw new TypeError("Derived constructors may only return object or undefined");
@@ -414,7 +414,7 @@ var tt = function(o) {
           } catch (f) {
             console.warn("Bellhop error: ", f);
           }
-        this.connected && L(c) === "object" && c.type && this.trigger(c);
+        this.connected && O(c) === "object" && c.type && this.trigger(c);
       }
   } }, { key: "onConnectionReceived", value: function(n) {
     if (this.connecting = !1, this.connected = !0, !this.isChild) {
@@ -441,12 +441,12 @@ var tt = function(o) {
     var f = this, p = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : {}, y = arguments.length > 3 && arguments[3] !== void 0 && arguments[3];
     if (!this.connecting && !this.connected)
       throw "No connection, please call connect() first";
-    this.on(n, function g(_) {
-      y && f.off(_.type, g), c(_);
+    this.on(n, function g(L) {
+      y && f.off(L.type, g), c(L);
     }), this.send(n, p);
   } }, { key: "respond", value: function(n) {
     var c = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, f = arguments.length > 2 && arguments[2] !== void 0 && arguments[2], p = this, y = function() {
-      var g, _ = (g = F().mark(function x(v) {
+      var g, L = (g = F().mark(function x(v) {
         return F().wrap(function(h) {
           for (; ; )
             switch (h.prev = h.next) {
@@ -480,7 +480,7 @@ var tt = function(o) {
         });
       });
       return function(x) {
-        return _.apply(this, arguments);
+        return L.apply(this, arguments);
       };
     }();
     this.on(n, y);
@@ -488,53 +488,59 @@ var tt = function(o) {
     var n = arguments.length > 0 && arguments[0] !== void 0 && arguments[0], c = arguments.length > 1 ? arguments[1] : void 0;
     this.debug && typeof this.debug == "function" ? this.debug({ isChild: this.isChild, received: n, message: c }) : this.debug && console.log("Bellhop Instance (".concat(this.isChild ? "Child" : "Parent", ") ").concat(n ? "Receieved" : "Sent"), c);
   } }, { key: "destroy", value: function() {
-    B(R(a.prototype), "destroy", this).call(this), this.disconnect(), this._sendLater.length = 0;
+    B(N(a.prototype), "destroy", this).call(this), this.disconnect(), this._sendLater.length = 0;
   } }, { key: "target", get: function() {
     return this.isChild ? window.parent : this.iframe.contentWindow;
   } }]), a;
 }();
-const O = new tt(), et = () => {
-  O.connect(), O.send("init");
+const _ = new tt(), et = () => {
+  _.connect(), _.send("init");
 }, nt = () => {
   const o = `${+/* @__PURE__ */ new Date()}`;
-  O.send("login", {
+  _.send("login", {
     tag_id: o
   });
 }, rt = () => {
   const o = `${+/* @__PURE__ */ new Date()}`;
-  O.send("logout", {
+  _.send("logout", {
     tag_id: o
   });
 }, it = (o) => {
-  O.on("user_info", ({ data: i }) => {
+  _.on("user_info", ({ data: i }) => {
     o && o(i.user_info);
   });
 }, ot = (o, i) => {
-  i && O.send("topup", {
+  i && _.send("topup", {
     amount: i,
     gameOrderId: o
   });
 }, st = (o, i) => {
-  i && O.send("withdrawal", {
+  i && _.send("withdrawal", {
     amount: i,
     gameOrderId: o
   });
-}, at = (o) => {
-  O.on("topup_status", ({ data: i }) => {
-    o && o(i);
+}, at = (o, i) => {
+  _.send("update_rank", {
+    show: o,
+    list: i
   });
 }, ct = (o) => {
-  O.on("withdrawal_status", ({ data: i }) => {
+  _.on("topup_status", ({ data: i }) => {
+    o && o(i);
+  });
+}, ut = (o) => {
+  _.on("withdrawal_status", ({ data: i }) => {
     o && o(i);
   });
 };
 export {
   et as init,
-  at as listenTopup,
+  ct as listenTopup,
   it as listenUser,
-  ct as listenWithdrawal,
+  ut as listenWithdrawal,
   nt as login,
   rt as logout,
   ot as topup,
+  at as updateRank,
   st as withdrawal
 };
