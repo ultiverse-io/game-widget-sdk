@@ -6,37 +6,43 @@ const rankList: RankItem[] = [
     rank: 1,
     username: 'helloworld',
     score: 50000,
-    avatar: ''
+    avatar: '',
+    uid: 1111,
   },
   {
     rank: 2,
     username: 'helloworld',
     score: 50000,
-    avatar: ''
+    avatar: '',
+    uid: 2222,
   },
   {
     rank: 3,
     username: 'helloworld',
     score: 50000,
-    avatar: ''
+    avatar: '',
+    uid: 3333,
   },
   {
     rank: 4,
     username: 'helloworld',
     score: 50000,
-    avatar: ''
+    avatar: '',
+    uid: 4444,
   },
   {
     rank: 4,
     username: 'helloworld',
     score: 50000,
-    avatar: ''
+    avatar: '',
+    uid: 5555,
   },
   {
     rank: 4,
     username: 'helloworld',
     score: 50000,
-    avatar: ''
+    avatar: '',
+    uid: 6666,
   },
 ]
 

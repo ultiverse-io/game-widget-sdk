@@ -21,6 +21,7 @@ export interface UserInfo {
 }
 
 export interface RankItem {
+  uid: string | number;
   rank: number;
   username: string;
   score: number;
