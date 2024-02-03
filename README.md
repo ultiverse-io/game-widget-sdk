@@ -32,7 +32,7 @@ listenUser((info) => {
 logout();
 
 
-// tagId: mark you callback
+// tagId: mark your callback
 const tagId = readContract({
   tagId: 'read1',
   address: contractAddress,
@@ -46,7 +46,7 @@ listenReadContractCallback((result) => {
   setReadCallback(result);
 });
 
-// tagId: mark you callback
+// tagId: mark your callback
 const tagId = writeContract({
   tagId: 'write1',
   address: contractAddress,
