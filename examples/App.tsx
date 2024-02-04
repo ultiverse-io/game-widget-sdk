@@ -66,7 +66,7 @@ const App = () => {
           <strong>Write Contract Demo: safeTransferFrom(address,address,uint256)</strong>
           <div>from address: {userInfo.connected}</div>
           <div>target address: <input onChange={(e) => targetAddress = e.target.value} /></div>
-          <div>balanceOf address: <input onChange={(e) => tokenId = e.target.value} /></div>
+          <div>tokenId: <input onChange={(e) => tokenId = e.target.value} /></div>
           <button
             onClick={() => targetAddress && tokenId !== '' && writeContract({
               tagId: 'write1',
