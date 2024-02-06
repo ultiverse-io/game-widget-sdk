@@ -31,7 +31,7 @@ export default defineConfig(({}) => {
         // source code input
         entry: resolve('src/index.ts'),
         // library name
-        name: 'ultiverse-toolkit',
+        name: 'UT',
         // [filename].cjs
         fileName: 'index',
         // format
