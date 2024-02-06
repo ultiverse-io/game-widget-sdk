@@ -35,7 +35,7 @@ export default defineConfig(({}) => {
         // [filename].cjs
         fileName: 'index',
         // format
-        formats: ['es', 'cjs'],
+        formats: ['es', 'cjs', 'umd'],
       },
       rollupOptions: {
         // external resource
