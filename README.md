@@ -55,9 +55,29 @@ const tagId = writeContract({
   args: [userInfo.connected, targetAddress, tokenId]
 })
 
-listenWriteContractCallback((result) => {
+listenWriteContractCallback(async (result) => {
   console.log('listenWriteContractCallback:', result, result.tagId)
-  setWriteCallback(result);
+  if (result.status === 'failed') {
+    setWriteCallback('failed');
+  } else if (result.status === 'success') {
+    const checkRes = fetch('/api/server/check',{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.parse({
+        address: userInfo.connected,
+      })
+    })
+  
+    if (checkRes.success) {
+      setWriteCallback('success');
+    } else {
+      setWriteCallback('failed');
+    }
+  } else {
+    result.status === 'loading'
+  }
 });
 
 
