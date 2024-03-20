@@ -76,7 +76,7 @@ listenWriteContractCallback(async (result) => {
       setWriteCallback('failed');
     }
   } else {
-    result.status === 'loading'
+    setWriteCallback('loading');
   }
 });
 
